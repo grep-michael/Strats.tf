@@ -9,7 +9,9 @@ function preload(){
 
 function setup(){
     var canvasDiv = document.getElementById('canvas');
+    //comment out when multiple pictures are added
     var width = canvasDiv.clientWidth;
+
     var canvas = createCanvas(width,400)
     canvas.parent('canvas')
     drawingGraphics = createGraphics(width,400)
