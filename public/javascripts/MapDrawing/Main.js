@@ -27,9 +27,11 @@ function draw(){
 
 function changeToolToErase(){
     CurrentTool=eraseTool;
+    changeButton('EraseButton')
 }
 function changeToolToDraw(){
     CurrentTool=drawTool;
+    changeButton('DrawButton')
 }
 
 function cleanCanvas(){

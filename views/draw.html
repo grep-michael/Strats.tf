@@ -12,13 +12,13 @@
             <nav class="navbar navbar-expand-lg">
                 <ul class="navbar-nav nav-fill w-50">
                     <li class="nav-item my-2">
-                        <button class="btn btn-dark" onClick="cleanCanvas()">Clear</button>
+                        <button class="btn btn-dark" onClick="cleanCanvas()" id="ClearButton">Clear</button>
+                    </li>
+                    <li class="nav-item my-2 ">
+                        <button class="btn btn-dark btn-outline-light" onClick="changeToolToDraw()" id="DrawButton">Draw</button>
                     </li>
                     <li class="nav-item my-2">
-                        <button class="btn btn-dark" onClick="changeToolToDraw()">Draw</button>
-                    </li>
-                    <li class="nav-item my-2">
-                        <button class="btn btn-dark" onClick="changeToolToErase()">Erase</button>
+                        <button class="btn btn-dark" onClick="changeToolToErase()" id="EraseButton">Erase</button>
                     </li>
                 </ul>
             </nav>
@@ -29,4 +29,5 @@
             </div>
         </div>
     </body>
+    <script src="javascripts/MapDrawing/ButtonTracker.js"></script>
 </html>
