@@ -1,13 +1,16 @@
 
-var drawingGraphics;
+var drawingGraphics, stickerGraphics;
 var bg;
-
+var mapname = "gullywash"
+var stickers = []
 
 function preload(){
-    bg = loadImage('images/gullywash/gullymid.png');
+    bg = loadImage(`images/${mapname}/${mapname}mid.png`);
 }
 
 function setup(){
+    //drawing happens on graphics objects which are rendered over the image
+    //cursors are drawn on the main canvas
     var canvasDiv = document.getElementById('canvas');
     //comment out when multiple pictures are added
     var width = canvasDiv.clientWidth;
@@ -17,14 +20,17 @@ function setup(){
     canvas.parent('canvas')
     //drawingGraphics = createGraphics(width,400)
     drawingGraphics = createGraphics(bg.width,bg.height);
-    drawingGraphics.clear()
+    drawingGraphics.clear();
+    stickerGraphics = createGraphics(bg.width,bg.height);
+    stickerGraphics.clear();
 }
 
 function draw(){
     background(bg)
-    CurrentTool.cursor()
+    CurrentTool.cursor();
+    
     if(mouseIsPressed){
-        CurrentTool.action(drawingGraphics)    
+        CurrentTool.action(drawingGraphics);   
     }
     image(drawingGraphics,0,0);
 }
@@ -38,10 +44,13 @@ function changeToolToDraw(){
     changeButton('DrawButton')
 }
 function changetoSecond(){
+    bg = loadImage(`images/${mapname}/${mapname}second.png`);
 }
 function changetoLast(){
+    bg = loadImage(`images/${mapname}/${mapname}last.png`);
 }
 function changetoMid(){
+    bg = loadImage(`images/${mapname}/${mapname}mid.png`);
 }
 
 function cleanCanvas(){

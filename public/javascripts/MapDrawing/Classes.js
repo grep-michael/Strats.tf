@@ -1,6 +1,7 @@
 function EraseTool(){
     this.eraserSize = 30;
     this.action = function(graphics){
+        //TODO: remove stickers, current thought is to store all stickers on one graphic, and in an array
         graphics.erase(255)
         graphics.ellipse(mouseX, mouseY, this.eraserSize,this.eraserSize);
         graphics.noErase();
@@ -24,6 +25,27 @@ function DrawTool(){
     }
 }
 
+function Sticker(...args){
+    let name = args[0]
+    let x = args[1]
+    let y = args[2]
+    ellipse(x,y,20,20)
+}
+
+
+function StickerTool(args){
+    console.log(args)
+    this.action = function(graphics){
+        //place class icon
+        let s = new Sticker("Solider",mouseX,mouseY)
+    }
+    this.cursor = function(){
+        //draw class icon
+    }
+}
+
+
+const stickerTool = new StickerTool();
 const drawTool = new DrawTool(); 
 const eraseTool = new EraseTool();
 var CurrentTool = drawTool;
