@@ -27,11 +27,17 @@ function setup(){
 
 function draw(){
     background(bg)
+    
+    stickers.forEach((sticker,i)=>{
+        stickerGraphics.image(sticker.image,sticker.x,sticker.y,50,50)
+    });
+
     CurrentTool.cursor();
     
     if(mouseIsPressed){
         CurrentTool.action(drawingGraphics);   
     }
+    image(stickerGraphics,0,0);
     image(drawingGraphics,0,0);
 }
 
@@ -55,5 +61,7 @@ function changetoMid(){
 
 function cleanCanvas(){
     clear();
-    drawingGraphics.clear()
+    drawingGraphics.clear();
+    stickerGraphics.clear();
+    stickers = []
 }

@@ -26,10 +26,10 @@ function DrawTool(){
 }
 
 function Sticker(...args){
-    let name = args[0]
-    let x = args[1]
-    let y = args[2]
-    ellipse(x,y,20,20)
+    this.name = args[0]
+    this.x = args[1]
+    this.y = args[2]
+    this.image = loadImage(`images/classes/${this.name}_emblem_RED.png`)
 }
 
 
@@ -37,7 +37,10 @@ function StickerTool(args){
     console.log(args)
     this.action = function(graphics){
         //place class icon
-        let s = new Sticker("Solider",mouseX,mouseY)
+        let s = new Sticker("Soldier",mouseX,mouseY)
+        if(!stickers.contains(s)){
+            stickers.push(s)
+        }
     }
     this.cursor = function(){
         //draw class icon
@@ -45,10 +48,11 @@ function StickerTool(args){
 }
 
 
+
 const stickerTool = new StickerTool();
 const drawTool = new DrawTool(); 
 const eraseTool = new EraseTool();
-var CurrentTool = drawTool;
+var CurrentTool = stickerTool;
 
 /* es6 wasnt working in browser :(
 class Tool{
