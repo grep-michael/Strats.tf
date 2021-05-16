@@ -35,7 +35,7 @@ function draw(){
     background(bg);
 
     if(mouseIsPressed){
-        if(CurrentTool.__proto__.constructor.name !== 'StickerTool'){
+        if(CurrentTool.type === 'pressed'){
             CurrentTool.action(drawingGraphics);
         }
     }
@@ -44,7 +44,7 @@ function draw(){
 
 }
 function mousePressed() {
-    if(CurrentTool.__proto__.constructor.name === "StickerTool"){
+    if(CurrentTool.type === "click"){
         CurrentTool.action(drawingGraphics);
     }
     drawStack.push(drawingGraphics.get())

@@ -1,5 +1,9 @@
+//tools have a field called type which is either 'pressed' or 'clicked'
+//clicked will only draw once on mouse press, multi will draw while mouse is pressed
+
 function EraseTool(){
     this.eraserSize = 30;
+    this.type = 'pressed';
     this.action = function(graphics){
         //TODO: remove stickers, current thought is to store all stickers on one graphic, and in an array
         graphics.erase(255)
@@ -15,6 +19,7 @@ function EraseTool(){
 
 function DrawTool(){
     this.thicc = 3; //default 1
+    this.type = 'pressed';
     this.action = function(graphics){
         graphics.fill(0);
         graphics.strokeWeight(this.thicc);
@@ -35,6 +40,7 @@ function Sticker(...args){
 
 function StickerTool(stickerName){
     this.name = stickerName;
+    this.type = 'click';
     this.action = function(graphics){
         //place class icon
         graphics.image(ClassIconsMap[this.name],mouseX-25,mouseY-25,50,50);
