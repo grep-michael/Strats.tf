@@ -33,6 +33,12 @@ function changeToolToDraw(){
     CurrentTool=drawTool;
     changeButton('DrawButton')
 }
+function changetoSecond(){
+}
+function changetoLast(){
+}
+function changetoMid(){
+}
 
 function cleanCanvas(){
     clear();
