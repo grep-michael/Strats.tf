@@ -35,13 +35,18 @@ function draw(){
     background(bg);
 
     if(mouseIsPressed){
-        CurrentTool.action(drawingGraphics);
+        if(CurrentTool.__proto__.constructor.name !== 'StickerTool'){
+            CurrentTool.action(drawingGraphics);
+        }
     }
     image(drawingGraphics,0,0);
     CurrentTool.cursor();
 
 }
 function mousePressed() {
+    if(CurrentTool.__proto__.constructor.name === "StickerTool"){
+        CurrentTool.action(drawingGraphics);
+    }
     drawStack.push(drawingGraphics.get())
 }
 function keyPressed(e) {

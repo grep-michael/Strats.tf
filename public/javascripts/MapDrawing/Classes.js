@@ -26,7 +26,6 @@ function DrawTool(){
 }
 
 function Sticker(...args){
-    
     this.name = args[0];
     this.x = args[1];
     this.y = args[2];
