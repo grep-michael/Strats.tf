@@ -13,8 +13,10 @@ function EraseTool(){
 }
 
 function DrawTool(){
+    this.thicc = 3; //default 1
     this.action = function(graphics){
         graphics.fill(0);
+        graphics.strokeWeight(this.thicc);
         graphics.stroke(255,0,0);
         graphics.line(mouseX, mouseY, pmouseX, pmouseY);  
     }

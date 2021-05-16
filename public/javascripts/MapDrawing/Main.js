@@ -4,17 +4,19 @@ var bg;
 
 
 function preload(){
-    bg = loadImage('images/SnakeWater/Snakewater_overview.png');
+    bg = loadImage('images/gullywash/gullymid.png');
 }
 
 function setup(){
     var canvasDiv = document.getElementById('canvas');
     //comment out when multiple pictures are added
     var width = canvasDiv.clientWidth;
-
-    var canvas = createCanvas(width,400)
+    //var canvas = createCanvas(width,400)
+    var canvas = createCanvas(bg.width,bg.height);
+    
     canvas.parent('canvas')
-    drawingGraphics = createGraphics(width,400)
+    //drawingGraphics = createGraphics(width,400)
+    drawingGraphics = createGraphics(bg.width,bg.height);
     drawingGraphics.clear()
 }
 
