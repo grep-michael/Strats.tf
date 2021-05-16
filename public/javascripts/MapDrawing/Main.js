@@ -1,6 +1,6 @@
 
 var ClassIconsMap = {};
-
+var drawStack = []
 
 var drawingGraphics, stickerGraphics;
 var bg;
@@ -38,34 +38,41 @@ function draw(){
     stickers.forEach((sticker,i)=>{
         stickerGraphics.image(sticker.image,sticker.x-25,sticker.y-25,50,50)
     });
-
-    CurrentTool.cursor();
-    
     if(mouseIsPressed){
-        CurrentTool.action(drawingGraphics);   
+        CurrentTool.action(drawingGraphics);
+        
+        
     }
-
     image(stickerGraphics,0,0);
     image(drawingGraphics,0,0);
+    CurrentTool.cursor();
+
 }
+function mousePressed() {
+    drawStack.push(drawingGraphics.get())
+  }
+function keyPressed(e) {
+    if (e.keyCode == 90 && (e.ctrlKey || e.metaKey)) {
+        let g = drawStack.pop();
+        console.log(g);
+        drawingGraphics.clear()
+        drawingGraphics.image(g,0,0); 
+    }
+  }
 
 function changeToolToErase(){
     CurrentTool=eraseTool;
-    changeButton('EraseButton')
+    changeButton('EraseButton');
 }
 function changeToolToDraw(){
     CurrentTool=drawTool;
-    changeButton('DrawButton')
+    changeButton('DrawButton');
 }
-function changetoSecond(){
-    bg = loadImage(`images/${mapname}/${mapname}second.png`);
+
+function changeMap(point){
+    bg = loadImage(`images/${mapname}/${mapname}${point}.png`);
 }
-function changetoLast(){
-    bg = loadImage(`images/${mapname}/${mapname}last.png`);
-}
-function changetoMid(){
-    bg = loadImage(`images/${mapname}/${mapname}mid.png`);
-}
+
 function stickerClick(args){
     CurrentTool = new StickerTool(args);
     changeButton('');
@@ -75,5 +82,6 @@ function cleanCanvas(){
     clear();
     drawingGraphics.clear();
     stickerGraphics.clear();
-    stickers = []
+    stickers = [];
+    drawStack = [];
 }
