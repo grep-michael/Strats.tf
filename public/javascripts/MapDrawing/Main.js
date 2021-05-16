@@ -2,10 +2,9 @@
 var ClassIconsMap = {};
 var drawStack = []
 
-var drawingGraphics, stickerGraphics;
+var drawingGraphics;
 var bg;
 var mapname = "gullywash"
-var stickers = []
 
 function preload(){
     bg = loadImage(`images/${mapname}/${mapname}mid.png`);
@@ -35,15 +34,9 @@ function setup(){
 function draw(){
     background(bg)
     
-    stickers.forEach((sticker,i)=>{
-        stickerGraphics.image(sticker.image,sticker.x-25,sticker.y-25,50,50)
-    });
     if(mouseIsPressed){
         CurrentTool.action(drawingGraphics);
-        
-        
     }
-    image(stickerGraphics,0,0);
     image(drawingGraphics,0,0);
     CurrentTool.cursor();
 
@@ -53,10 +46,8 @@ function mousePressed() {
   }
 function keyPressed(e) {
     if (e.keyCode == 90 && (e.ctrlKey || e.metaKey)) {
-        let g = drawStack.pop();
-        console.log(g);
         drawingGraphics.clear()
-        drawingGraphics.image(g,0,0); 
+        drawingGraphics.image(drawStack.pop(),0,0); 
     }
   }
 

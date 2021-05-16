@@ -38,10 +38,7 @@ function StickerTool(stickerName){
     this.name = stickerName;
     this.action = function(graphics){
         //place class icon
-        let s = new Sticker(this.name,mouseX,mouseY)
-        if(!stickers.contains(s)){
-            stickers.push(s);
-        }
+        graphics.image(ClassIconsMap[stickerName],mouseX-25,mouseY-25,50,50);
     }
     this.cursor = function(){
         //draw class icon
