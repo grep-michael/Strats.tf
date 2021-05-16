@@ -13,3 +13,10 @@ body {
   background-color: #4a4a4a;
 }
 
+ul{
+  list-style: none;
+}
+
+#mainDrawingsArea{
+  display: flex;
+}
