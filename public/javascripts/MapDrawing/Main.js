@@ -32,8 +32,8 @@ function setup(){
 }
 
 function draw(){
-    background(bg)
-    
+    background(bg);
+
     if(mouseIsPressed){
         CurrentTool.action(drawingGraphics);
     }
@@ -43,13 +43,13 @@ function draw(){
 }
 function mousePressed() {
     drawStack.push(drawingGraphics.get())
-  }
+}
 function keyPressed(e) {
     if (e.keyCode == 90 && (e.ctrlKey || e.metaKey)) {
         drawingGraphics.clear()
         drawingGraphics.image(drawStack.pop(),0,0); 
     }
-  }
+}
 
 function changeToolToErase(){
     CurrentTool=eraseTool;
@@ -72,7 +72,5 @@ function stickerClick(args){
 function cleanCanvas(){
     clear();
     drawingGraphics.clear();
-    stickerGraphics.clear();
-    stickers = [];
     drawStack = [];
 }

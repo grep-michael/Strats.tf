@@ -38,10 +38,10 @@ function StickerTool(stickerName){
     this.name = stickerName;
     this.action = function(graphics){
         //place class icon
-        graphics.image(ClassIconsMap[stickerName],mouseX-25,mouseY-25,50,50);
+        graphics.image(ClassIconsMap[this.name],mouseX-25,mouseY-25,50,50);
     }
     this.cursor = function(){
-        //draw class icon
+        image(ClassIconsMap[this.name],mouseX-25,mouseY-25,50,50);
     }
 }
 
