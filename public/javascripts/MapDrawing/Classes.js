@@ -43,10 +43,10 @@ function StickerTool(stickerName){
     this.type = 'click';
     this.action = function(graphics){
         //place class icon
-        graphics.image(ClassIconsMap[this.name],mouseX-25,mouseY-25,50,50);
+        graphics.image(ClassIconsMap.get(this.name),mouseX-25,mouseY-25,50,50);
     }
     this.cursor = function(){
-        image(ClassIconsMap[this.name],mouseX-25,mouseY-25,50,50);
+        image(ClassIconsMap.get(this.name),mouseX-25,mouseY-25,50,50);
     }
 }
 

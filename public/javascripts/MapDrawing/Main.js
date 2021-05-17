@@ -1,19 +1,26 @@
 
-var ClassIconsMap = {};
+var ClassIconsMap = new Map();
+var Maps = new Map();
 var drawStack = []
 var mouseOver = false;
 var drawingGraphics,canvas,bg;
-var mapname = "gullywash"
+var mapname = "process" 
+//1024 x 768
+//TODO resize
 
 function preload(){
-    bg = loadImage(`images/${mapname}/${mapname}mid.png`);
-    ClassIconsMap['soldier'] = loadImage("images/classes/Soldier_emblem_RED.png");
-    ClassIconsMap['demoman'] = loadImage("images/classes/Demoman_emblem_RED.png");
-    ClassIconsMap['medic'] = loadImage("images/classes/Medic_emblem_RED.png");
-    ClassIconsMap['scout'] = loadImage("images/classes/Scout_emblem_RED.png");
+    ClassIconsMap.set('soldier',loadImage("images/classes/Soldier_emblem_RED.png"));
+    ClassIconsMap.set('demoman',loadImage("images/classes/Demoman_emblem_RED.png"));
+    ClassIconsMap.set('medic', loadImage("images/classes/Medic_emblem_RED.png"));
+    ClassIconsMap.set('scout',loadImage("images/classes/Scout_emblem_RED.png"));
+    Maps.set('mid',loadImage(`images/${mapname}/${mapname}mid.png`));
+    Maps.set('last', loadImage(`images/${mapname}/${mapname}last.png`));
+    Maps.set('second', loadImage(`images/${mapname}/${mapname}second.png`));
 }
 
 function setup(){
+    reSizeMaps();
+    bg = Maps.get('mid')
     //drawing happens on graphics objects which are rendered over the image
     //cursors are drawn on the main canvas
     var canvasDiv = document.getElementById('canvas');
@@ -70,13 +77,19 @@ function changeToolToDraw(){
     CurrentTool=drawTool;
     changeButton('DrawButton');
 }
-function changeMap(point){
-    bg = loadImage(`images/${mapname}/${mapname}${point}.png`);
-}
 function stickerClick(args){
     CurrentTool = new StickerTool(args);
     changeButton('');
 }
+function changeMap(point){
+    bg = Maps.get(point)
+}
+function reSizeMaps(){
+    for(let [key,value] of Maps){
+        Maps[key] = value.resize(990,0);
+    }
+}
+
 function cleanCanvas(){
     clear();
     drawingGraphics.clear();
