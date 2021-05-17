@@ -12,9 +12,7 @@ function preload(){
     ClassIconsMap['medic'] = loadImage("images/classes/Medic_emblem_RED.png");
     ClassIconsMap['scout'] = loadImage("images/classes/Scout_emblem_RED.png");
 }
-function toggleMouseOver(){
-    mouseOver = !mouseOver;
-}
+
 function setup(){
     //drawing happens on graphics objects which are rendered over the image
     //cursors are drawn on the main canvas
@@ -24,7 +22,6 @@ function setup(){
     //var canvas = createCanvas(width,400)
     canvas = createCanvas(bg.width,bg.height);
     canvas.parent('canvas')
-    canvas.mouseOver(toggleMouseOver);
     //drawingGraphics = createGraphics(width,400)
     drawingGraphics = createGraphics(bg.width,bg.height);
     drawingGraphics.clear();
@@ -48,7 +45,8 @@ function mousePressed() {
     if(CurrentTool.type === "click"){
         CurrentTool.action(drawingGraphics);
     }
-    if (mouseOver){
+
+    if ((mouseY > canvas.position().y),(mouseY < canvas.position().y+canvas.height) && (mouseX > canvas.position().x),(mouseX < canvas.position().x+canvas.width)){
         drawStack.push(drawingGraphics.get());
     }
 }
