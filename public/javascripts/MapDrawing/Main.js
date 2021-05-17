@@ -54,7 +54,11 @@ function mousePressed() {
 function keyPressed(e) {
     if (e.keyCode == 90 && (e.ctrlKey || e.metaKey)) {
         drawingGraphics.clear()
-        drawingGraphics.image(drawStack.pop(),0,0); 
+        try{
+            drawingGraphics.image(drawStack.pop(),0,0);
+        }catch(e){
+            console.log("Stack empty");
+        }
     }
 }
 
