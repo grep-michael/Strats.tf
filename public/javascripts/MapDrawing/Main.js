@@ -67,7 +67,7 @@ function keyPressed(e) {
             console.log("Stack empty");
         }
     }
-}
+}https://medal.tv/clips/52172487/d1337dhTaVbm
 
 function changeToolToErase(){
     CurrentTool=eraseTool;
@@ -84,9 +84,36 @@ function stickerClick(args){
 function changeMap(point){
     bg = Maps.get(point)
 }
+
+
+
 function reSizeMaps(){
+    function resizeWidth(){
+        let inital = 1920;
+        let stickerSize = document.getElementById('demoSticker').offsetWidth + (document.getElementById('demoSticker').offsetWidth/2);
+        let resizeLength = inital - (inital - window.innerWidth) //1920x1080 is inital size of map 
+        resizeLength = resizeLength - stickerSize;
+        return resizeLength;
+    }
+    function resizeHeight(){
+        let inital = 1080;
+        let stickerSize = document.getElementById('NavBar').offsetHeight + (document.getElementById('NavBar').offsetHeight/2);
+        let resizeLength = inital - (inital - window.innerHeight) //1920x1080 is inital size of map 
+        resizeLength = resizeLength - stickerSize;
+        return resizeLength;
+    }
+    let newheight = resizeHeight();
+    let newwidth = resizeWidth();
+    
     for(let [key,value] of Maps){
-        Maps[key] = value.resize(990,0);
+        var newimg = value
+        newimg.resize(newwidth,0);
+        if(newimg.height > window.innerHeight){
+            value.resize(0,newheight);
+        }else{
+            value.resize(newwidth,0);
+        }
+        Maps[key] = value;
     }
 }
 
