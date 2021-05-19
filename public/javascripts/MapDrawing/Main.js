@@ -59,14 +59,21 @@ function mousePressed() {
 }
 
 function keyPressed(e) {
+    //crt-z
     if (e.keyCode == 90 && (e.ctrlKey || e.metaKey)) {
         drawingGraphics.clear()
         try{
             drawingGraphics.image(drawStack.pop(),0,0);
         }catch(e){
-            console.log("Stack empty");
         }
+    }else if (e.keyCode == 221 || e.keyCode == 61){
+        console.log('+')
+        eraseTool.eraserSize += 5;
+    }else if(e.keyCode == 219 || e.keyCode == 173){
+        console.log('-')
+        eraseTool.eraserSize -= 5;
     }
+
 }https://medal.tv/clips/52172487/d1337dhTaVbm
 
 function changeToolToErase(){

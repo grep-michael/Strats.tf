@@ -37,7 +37,6 @@ function Sticker(...args){
     this.image = ClassIconsMap[this.name];
 }
 
-
 function StickerTool(stickerName){
     this.name = stickerName;
     this.type = 'click';
