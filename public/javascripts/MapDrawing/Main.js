@@ -74,25 +74,7 @@ function keyPressed(e) {
         eraseTool.eraserSize -= 5;
     }
 
-}https://medal.tv/clips/52172487/d1337dhTaVbm
-
-function changeToolToErase(){
-    CurrentTool=eraseTool;
-    changeButton('EraseButton');
 }
-function changeToolToDraw(){
-    CurrentTool=drawTool;
-    changeButton('DrawButton');
-}
-function stickerClick(args){
-    CurrentTool = new StickerTool(args);
-    changeButton('');
-}
-function changeMap(point){
-    bg = Maps.get(point)
-}
-
-
 
 function reSizeMaps(){
     function resizeWidth(){
@@ -124,8 +106,3 @@ function reSizeMaps(){
     }
 }
 
-function cleanCanvas(){
-    clear();
-    drawingGraphics.clear();
-    drawStack = [];
-}
