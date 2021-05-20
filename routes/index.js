@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/makeRoom/:mapName', function(req, res, next) {
   //create new room
-
+  res.redirect(`/${uuidv4()}/req.params.mapName`)
   res.render('draw.html',{ROOMID:uuidv4(),MapName:req.params.mapName});
 });
 
