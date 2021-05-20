@@ -7,12 +7,19 @@ var {v4:uuidv4} = require('uuid')
 router.get('/', function(req, res, next) {
   res.render('index.html');
 });
+router.get('/makeRoom/:mapName', function(req, res, next) {
+  //create new room
 
-router.get('/draw', function(req, res, next) {
-  res.render('draw.html',{title:"Starts.tf"});
+  res.render('draw.html',{ROOMID:uuidv4(),MapName:req.params.mapName});
 });
-router.get('/:roomId', function(req, res, next) {
-  res.render('draw.html',{ROOMID:req.params.roomId});
+
+//router.get('/draw', function(req, res, next) {
+//  res.render('draw.html',{title:"Starts.tf"});
+//});
+
+//join room
+router.get('/:roomId/:mapname', function(req, res, next) {
+  res.render('draw.html',{ROOMID:req.params.roomId,MapName:NaN});
 });
 
 

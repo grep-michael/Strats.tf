@@ -28,7 +28,15 @@ var server = http.createServer(app);
 var io = require('socket.io')(server)
 io.on('connection', socket =>{
   socket.on('join-room',roomId=>{
+    console.log(roomId + " joined")
     socket.join(roomId)
+  })
+  socket.on('get-map-name', roomId =>{
+    console.log(roomId + " get-map-name")
+    io.to(roomId).emit('give-map-name')
+  }) 
+  socket.on('set-map-name',(roomId,mapname)=>{
+    socket.to(roomId).emit('set-map',mapname);
   })
 })
 

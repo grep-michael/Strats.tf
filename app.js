@@ -16,7 +16,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine','ejs')
 //app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
