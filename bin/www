@@ -32,12 +32,13 @@ io.on('connection', socket =>{
     socket.join(roomId)
   })
   socket.on('get-map-name', roomId =>{
-    console.log(roomId + " get-map-name")
-    io.to(roomId).emit('give-map-name')
+    socket.to(roomId).emit('give-map-name')
+    socket.on('give-server-map-name',mapname =>{
+      socket.emit('recive-map-name',mapname)
+    })
+    
   }) 
-  socket.on('set-map-name',(roomId,mapname)=>{
-    socket.to(roomId).emit('set-map',mapname);
-  })
+  
 })
 
 

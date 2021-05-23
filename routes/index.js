@@ -9,8 +9,19 @@ router.get('/', function(req, res, next) {
 });
 router.get('/makeRoom/:mapName', function(req, res, next) {
   //create new room
-  res.redirect(`/${uuidv4()}/req.params.mapName`)
-  res.render('draw.html',{ROOMID:uuidv4(),MapName:req.params.mapName});
+  //res.statusCode = 302;
+  res.setHeader('map',req.params.mapName);
+  res.location(`/${uuidv4()}`)
+  //res.set({
+  //  'map':req.params.mapName
+  //})
+  
+  console.log(res)
+  res.status(400).end()
+  //res.redirect(`/${uuidv4()}`);
+  
+  
+  
 });
 
 //router.get('/draw', function(req, res, next) {
@@ -18,7 +29,8 @@ router.get('/makeRoom/:mapName', function(req, res, next) {
 //});
 
 //join room
-router.get('/:roomId/:mapname', function(req, res, next) {
+router.get('/:roomId', function(req, res, next) {
+  console.log(req.headers)
   res.render('draw.html',{ROOMID:req.params.roomId,MapName:NaN});
 });
 
