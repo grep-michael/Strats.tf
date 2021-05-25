@@ -36,9 +36,7 @@ io.on('connection', socket =>{
     socket.on('give-server-map-name',mapname =>{
       socket.emit('recive-map-name',mapname)
     })
-    
-  }) 
-  
+  })   
 })
 
 
