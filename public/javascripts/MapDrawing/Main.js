@@ -4,18 +4,19 @@ var Maps = new Map();
 var drawStack = []
 var mouseOver = false;
 var drawingGraphics,canvas,bg;
-var mapname = "process" 
+//var mapname = "process" 
 //1024 x 768
 //TODO resize
 
 function preload(){
-    ClassIconsMap.set('soldier',loadImage("images/classes/Soldier_emblem_RED.png"));
-    ClassIconsMap.set('demoman',loadImage("images/classes/Demoman_emblem_RED.png"));
-    ClassIconsMap.set('medic', loadImage("images/classes/Medic_emblem_RED.png"));
-    ClassIconsMap.set('scout',loadImage("images/classes/Scout_emblem_RED.png"));
-    Maps.set('mid',loadImage(`images/${mapname}/${mapname}mid.png`));
-    Maps.set('last', loadImage(`images/${mapname}/${mapname}last.png`));
-    Maps.set('second', loadImage(`images/${mapname}/${mapname}second.png`));
+    //mapname = getMapName();
+    ClassIconsMap.set('soldier',loadImage("/images/classes/Soldier_emblem_RED.png"));
+    ClassIconsMap.set('demoman',loadImage("/images/classes/Demoman_emblem_RED.png"));
+    ClassIconsMap.set('medic', loadImage("/images/classes/Medic_emblem_RED.png"));
+    ClassIconsMap.set('scout',loadImage("/images/classes/Scout_emblem_RED.png"));
+    Maps.set('mid',loadImage(`/images/${mapname}/${mapname}mid.png`));
+    Maps.set('last', loadImage(`/images/${mapname}/${mapname}last.png`));
+    Maps.set('second', loadImage(`/images/${mapname}/${mapname}second.png`));
 }
 
 function setup(){
@@ -74,25 +75,7 @@ function keyPressed(e) {
         eraseTool.eraserSize -= 5;
     }
 
-}https://medal.tv/clips/52172487/d1337dhTaVbm
-
-function changeToolToErase(){
-    CurrentTool=eraseTool;
-    changeButton('EraseButton');
 }
-function changeToolToDraw(){
-    CurrentTool=drawTool;
-    changeButton('DrawButton');
-}
-function stickerClick(args){
-    CurrentTool = new StickerTool(args);
-    changeButton('');
-}
-function changeMap(point){
-    bg = Maps.get(point)
-}
-
-
 
 function reSizeMaps(){
     function resizeWidth(){
@@ -124,8 +107,3 @@ function reSizeMaps(){
     }
 }
 
-function cleanCanvas(){
-    clear();
-    drawingGraphics.clear();
-    drawStack = [];
-}
