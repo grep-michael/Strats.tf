@@ -11,3 +11,10 @@ Array.prototype.contains = function(obj){
         }
         return false;
 }
+
+async function setMap(){
+    const res = await fetch(window.location.origin + "/getRoom/" + ROOM_ID)
+    const js = await res.json()  
+    return js['room']['mapname']
+
+}

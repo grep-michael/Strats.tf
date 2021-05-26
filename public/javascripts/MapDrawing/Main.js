@@ -4,19 +4,24 @@ var Maps = new Map();
 var drawStack = []
 var mouseOver = false;
 var drawingGraphics,canvas,bg;
+var mapname;
 //var mapname = "process" 
 //1024 x 768
 //TODO resize
 
+function cb(data){
+    mp = data['room']['mapname']
+    Maps.set('mid',loadImage(`/images/${mp}/${mp}mid.png`));
+    Maps.set('last', loadImage(`/images/${mp}/${mp}last.png`));
+    Maps.set('second', loadImage(`/images/${mp}/${mp}second.png`));
+}
+
 function preload(){
-    //mapname = getMapName();
+    loadJSON(window.location.origin + "/getRoom/" + ROOM_ID,cb)
     ClassIconsMap.set('soldier',loadImage("/images/classes/Soldier_emblem_RED.png"));
     ClassIconsMap.set('demoman',loadImage("/images/classes/Demoman_emblem_RED.png"));
     ClassIconsMap.set('medic', loadImage("/images/classes/Medic_emblem_RED.png"));
     ClassIconsMap.set('scout',loadImage("/images/classes/Scout_emblem_RED.png"));
-    Maps.set('mid',loadImage(`/images/${mapname}/${mapname}mid.png`));
-    Maps.set('last', loadImage(`/images/${mapname}/${mapname}last.png`));
-    Maps.set('second', loadImage(`/images/${mapname}/${mapname}second.png`));
 }
 
 function setup(){

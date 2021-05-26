@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var {v4:uuidv4} = require('uuid') 
-var {Client,Room} = require('../db/index.js');
-const client = new Client();
+var {client,Room} = require('../db/index.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,10 +21,7 @@ router.get('/makeRoom/:mapName', function(req, res, next) {
 });
 router.get('/getRoom/:roomId', function(req, res, next) {
   let id = req.params.roomId
-  console.log('begin search')
-  x = client.roomFromDBWhereIDEquals(id)
-  console.log('done with search')
-  res.json({room:x});
+  res.json({room:client.roomFromDBWhereIDEquals(id)});
 })
 //router.get('/draw', function(req, res, next) {
 //  res.render('draw.html',{title:"Starts.tf"});
@@ -33,7 +29,7 @@ router.get('/getRoom/:roomId', function(req, res, next) {
 
 //join room
 router.get('/:roomId', function(req, res, next) {
-  res.render('draw.html',{ROOMID:req.params.roomId,MapName:NaN});
+  res.render('draw.html',{ROOMID:req.params.roomId});
 });
 
 

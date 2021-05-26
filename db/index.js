@@ -1,27 +1,18 @@
 class Client{
     
     constructor() {
-        this.db = [];
+        this.db = new Map();
     }
     addRoom(RoomEntity) {
-        this.db.push(RoomEntity)
+        this.db.set(RoomEntity.id,RoomEntity)
     }
     roomFromDBWhereIDEquals(roomId){
-        returnValue = "No such Room"
-        /* for some ungoldy reason javascript eats shit and dies whenever i try to return from inside a for loop???
-        for(var i = 0; i < l; i++){
-            if(this.db[i].getID() == roomId){
-                return r;
-            }
-        }*/
-        this.db.forEach(element => {
-            console.log(element)
-            if(element.getID == roomId){
-                returnValue = element;
-            }
-        });
+        
+        if(this.db.has(roomId)){
+            return this.db.get(roomId);
+        }
 
-        return returnValue
+        return "No such room"
     }
 }
 class Room{
@@ -38,4 +29,6 @@ class Room{
     }
 }
 
-module.exports = {Room,Client}
+const client = new Client();
+
+module.exports = {Room,client}
