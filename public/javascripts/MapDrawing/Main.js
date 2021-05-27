@@ -5,6 +5,8 @@ var drawStack = []
 var mouseOver = false;
 var drawingGraphics,canvas,bg;
 var mapname;
+var peer_layers = new Map();
+var local_id = uuidv4();
 //var mapname = "process" 
 //1024 x 768
 //TODO resize

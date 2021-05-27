@@ -27,7 +27,14 @@ var server = http.createServer(app);
  */
 var io = require('socket.io')(server)
 io.on('connection', socket =>{
-  
+  socket.on('join-room',roomId =>{
+    console.log('client joined room')
+    socket.join(roomId)
+  })
+  socket.on('update-maps',(drawing,roomId,peerId) =>{
+    console.log('update maps')
+    socket.to(roomId).emit('update-peer-layers',drawing,peerId)
+  })
 })
 
 
