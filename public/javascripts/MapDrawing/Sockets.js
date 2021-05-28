@@ -12,7 +12,10 @@ up = function updateMap(){
     drawingGraphics.loadPixels()
     pixelsJson = JSON.stringify(drawingGraphics.pixels)
     console.log(pixelsJson)
-    socket.emit('update-maps', ROOM_ID,local_id, pixelsJson)
+    // we have to send in chunks
+    chunks = pixelsJson.length/100
+    console.log(chunks)
+    //socket.emit('update-maps', ROOM_ID,local_id, pixelsJson.slice(0,pixelsJson.length/100))
 }
 
 
