@@ -31,17 +31,13 @@ function setup(){
     bg = Maps.get('mid')
     //drawing happens on graphics objects which are rendered over the image
     //cursors are drawn on the main canvas
-    var canvasDiv = document.getElementById('canvas');
-    //comment out when multiple pictures are added
-    var width = canvasDiv.clientWidth;
-    //var canvas = createCanvas(width,400)
+    //var canvasDiv = document.getElementById('canvas');
+    
     canvas = createCanvas(bg.width,bg.height);
     canvas.parent('canvas')
-    //drawingGraphics = createGraphics(width,400)
+    
     drawingGraphics = createGraphics(bg.width,bg.height);
     drawingGraphics.clear();
-    stickerGraphics = createGraphics(bg.width,bg.height);
-    stickerGraphics.clear();
 }
 
 
@@ -54,6 +50,10 @@ function draw(){
     }
     image(drawingGraphics,0,0);
     CurrentTool.cursor();
+    peer_layers.forEach((layer)=>{
+        console.log(layer)
+        image(layer,0,0)
+    })
 }
 
 function mousePressed() {

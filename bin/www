@@ -32,8 +32,9 @@ io.on('connection', socket =>{
     socket.join(roomId)
   })
   socket.on('update-maps',(drawing,roomId,peerId) =>{
-    console.log('update maps')
-    socket.to(roomId).emit('update-peer-layers',drawing,peerId)
+    console.log("pixels obtained")
+    //TODO: change from io.to to socket.to
+    io.to(roomId).emit('update-peer-layers',drawing,peerId)
   })
 })
 
