@@ -58,7 +58,12 @@ function draw(){
     CurrentTool.cursor();
     peer_layers.forEach((layer)=>{
         //layers are pixel arrays as strings
-        image(layer,0,0)
+        /** 
+         * cant decide how I want to make images from pixels
+         * mabye a map for pixels and a map for their images
+         * I dont know if i wanna convert pixels into images every time we draw
+        */
+        pixels = JSON.parse(layer)
     })
 }
 
