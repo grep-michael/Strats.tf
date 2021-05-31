@@ -11,23 +11,6 @@ var local_id = uuidv4();
 //1024 x 768
 //TODO resize
 
-function test(){
-    chunks = 100;
-    drawingGraphics.loadPixels()
-    pixelsJson = JSON.stringify(drawingGraphics.pixels)
-    let rebuild= "";
-    // we have to send in chunks
-    chunksSize = pixelsJson.length/chunks;
-    curChunk = 0;
-    for(i=1;i<=chunks;i++){
-        new_chunk = curChunk + chunksSize+1 
-        x = pixelsJson.slice(curChunk,new_chunk)
-        rebuild += x
-        curChunk = new_chunk
-    }
-    //console.log(rebuild.slice(0,50),rebuild.slice(-50),rebuild.length)
-    //console.log(pixelsJson.slice(0,50),pixelsJson.slice(-50),pixelsJson.length)
-}
 
 window.addEventListener("load", function(){
     setTimeout(test,5000);
@@ -74,7 +57,7 @@ function draw(){
     image(drawingGraphics,0,0);
     CurrentTool.cursor();
     peer_layers.forEach((layer)=>{
-        console.log(layer)
+        //layers are pixel arrays as strings
         image(layer,0,0)
     })
 }

@@ -31,10 +31,9 @@ io.on('connection', socket =>{
     console.log('client joined room')
     socket.join(roomId)
   })
-  socket.on('update-maps',(drawing,roomId,peerId) =>{
-    console.log("pixels obtained")
+  socket.on('emit-chunk',(chunk,roomId,peerId) =>{
     //TODO: change from io.to to socket.to
-    io.to(roomId).emit('update-peer-layers',drawing,peerId)
+    socket.to(roomId).emit('update-chunk',chunk,peerId)
   })
 })
 

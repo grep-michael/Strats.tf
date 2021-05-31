@@ -8,14 +8,36 @@ socket.on('update-peer-layers',(pixels,id) =>{
     peer_layers.set(id,pixels);
 })
 
-up = function updateMap(){
+socket.on('update-chunk',(chunk,peerId) =>{
+    firstChar = chunk.slice(0,1)
+    lastChar = chunk.slice(-1)
+    if (firstChar == "{"){
+        peer_layers[peerId] = chunk
+    }
+    peer_layers[peerId] += chunk
+
+    
+})
+
+
+function test(){
+    chunks = 100;
     drawingGraphics.loadPixels()
     pixelsJson = JSON.stringify(drawingGraphics.pixels)
-    console.log(pixelsJson)
+    //let rebuild= "";
     // we have to send in chunks
-    chunks = pixelsJson.length/100
-    console.log(chunks)
-    //socket.emit('update-maps', ROOM_ID,local_id, pixelsJson.slice(0,pixelsJson.length/100))
+    chunksSize = pixelsJson.length/chunks;
+    curChunk = 0;
+    for(i=1;i<=chunks;i++){
+        new_chunk = curChunk + chunksSize+1; 
+        x = pixelsJson.slice(curChunk,new_chunk);
+        //rebuild += x;
+        socket.emit('emit-chunk',x,ROOM_ID,local_id);
+        curChunk = new_chunk;
+    }
+    //console.log(rebuild.slice(0,50),rebuild.slice(-50),rebuild.length)
+    //console.log(pixelsJson.slice(0,50),pixelsJson.slice(-50),pixelsJson.length)
+    //console.log(rebuild == pixelsJson)
 }
 
 
