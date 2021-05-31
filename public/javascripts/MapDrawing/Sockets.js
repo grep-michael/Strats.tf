@@ -1,6 +1,7 @@
 const socket = io('/');
 socket.binaryType = 'blob'
-socket.emit('join-room',ROOM_ID)
+
+socket.emit('join-room',ROOM_ID,local_id,customCanvas)
 
 socket.on('update-peer-layers',(pixels,id) =>{
     console.log(layer,id)
@@ -10,11 +11,13 @@ socket.on('update-peer-layers',(pixels,id) =>{
 
 socket.on('update-chunk',(chunk,peerId) =>{
     firstChar = chunk.slice(0,1)
-    lastChar = chunk.slice(-1)
+    //lastChar = chunk.slice(-1)
     if (firstChar == "{"){
-        peer_layers[peerId] = chunk
+        peerPixels[peerId] = chunk
+    }else{
+        peerPixels[peerId] += chunk
     }
-    peer_layers[peerId] += chunk
+    
 
     
 })

@@ -3,19 +3,12 @@ var ClassIconsMap = new Map();
 var Maps = new Map();
 var drawStack = []
 var mouseOver = false;
-var drawingGraphics,canvas,bg;
-var mapname;
-var peer_layers = new Map();
+var drawingGraphics,canvas,bg,mapname;
+var customCanvas = {}
+
+var peerPixels = new Map();
+var peerGraphics = new Map();
 var local_id = uuidv4();
-//var mapname = "process" 
-//1024 x 768
-//TODO resize
-
-
-window.addEventListener("load", function(){
-    setTimeout(test,5000);
-});
-
 
 function cb(data){
     mp = data['room']['mapname']
@@ -40,6 +33,8 @@ function setup(){
     //var canvasDiv = document.getElementById('canvas');
     
     canvas = createCanvas(bg.width,bg.height);
+    customCanvas[width] = bg.width
+    customCanvas[height] = bg.height
     canvas.parent('canvas')
     
     drawingGraphics = createGraphics(bg.width,bg.height);
@@ -56,14 +51,14 @@ function draw(){
     }
     image(drawingGraphics,0,0);
     CurrentTool.cursor();
-    peer_layers.forEach((layer)=>{
+    peerGraphics.forEach((graphics)=>{
         //layers are pixel arrays as strings
         /** 
          * cant decide how I want to make images from pixels
          * mabye a map for pixels and a map for their images
          * I dont know if i wanna convert pixels into images every time we draw
         */
-        pixels = JSON.parse(layer)
+         image(graphics,0,0);
     })
 }
 
